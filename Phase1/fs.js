@@ -1,5 +1,6 @@
 import fs from 'fs'
 
+
 fs.readFile('./doc1.txt', (err,data)=>{
    if(err){
     console.log(err);
@@ -45,3 +46,4 @@ fs.readFile('./doc1.txt',(err,data)=>{
     console.log('data transfered');
     
 })
+
