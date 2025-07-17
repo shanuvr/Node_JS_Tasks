@@ -2,7 +2,7 @@
 import user from "../models/user.js"
 
  const show = (req,res)=>{
-    res.send('hello')
+    res.status(200).send("hello");
  }
 
  const addUser = async (req,res)=>{
@@ -11,9 +11,17 @@ import user from "../models/user.js"
  }
 
  const deleteUser = async (req,res)=>{
-    const userId = req.params.id 
-    let deluser = await user.findByIdAndDelete(userId)
-    res.send(deluser)
+    try {
+    const userId = req.params.id;
+    const deluser = await user.findByIdAndDelete(userId);
+    if (deluser) {
+      res.status(200).json({ message: "User deleted", user: deluser });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Error deleting user" });
+  }
  }
 
  const updateUser = async(req,res)=>{
