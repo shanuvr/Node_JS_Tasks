@@ -11,7 +11,7 @@ let usersCollection;
 
 async function connectDB() {
     await client.connect();
-    const db = client.db('myDatabase');
+    const db = client.db('postman');
     usersCollection = db.collection('users');
     console.log('MongoDB connected');
 }
